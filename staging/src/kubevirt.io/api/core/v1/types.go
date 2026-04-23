@@ -404,12 +404,18 @@ type VolumeStatus struct {
 
 // KernelInfo show info about the kernel image
 type KernelInfo struct {
+	// +kubebuilder:validation:Format:=int64
+	// +kubebuilder:validation:Minimum:=0
+	// +kubebuilder:validation:Maximum:=4294967295
 	// Checksum is the checksum of the kernel image
 	Checksum uint32 `json:"checksum,omitempty"`
 }
 
 // InitrdInfo show info about the initrd file
 type InitrdInfo struct {
+	// +kubebuilder:validation:Format:=int64
+	// +kubebuilder:validation:Minimum:=0
+	// +kubebuilder:validation:Maximum:=4294967295
 	// Checksum is the checksum of the initrd file
 	Checksum uint32 `json:"checksum,omitempty"`
 }
@@ -444,6 +450,9 @@ type HotplugVolumeStatus struct {
 
 // ContainerDiskInfo shows info about the containerdisk
 type ContainerDiskInfo struct {
+	// +kubebuilder:validation:Format:=int64
+	// +kubebuilder:validation:Minimum:=0
+	// +kubebuilder:validation:Maximum:=4294967295
 	// Checksum is the checksum of the rootdisk or kernel artifacts inside the containerdisk
 	Checksum uint32 `json:"checksum,omitempty"`
 }
@@ -1332,8 +1341,8 @@ const (
 	// vm has the pod networking bind with a bridge
 	AllowPodBridgeNetworkLiveMigrationAnnotation string = "kubevirt.io/allow-pod-bridge-network-live-migration"
 
-	// DeprecatedVirtualMachineGenerationAnnotation is the generation of a Virtual Machine.
-	DeprecatedVirtualMachineGenerationAnnotation string = "kubevirt.io/vm-generation"
+	// VirtualMachineGenerationAnnotation is the generation of a Virtual Machine.
+	VirtualMachineGenerationAnnotation string = "kubevirt.io/vm-generation"
 
 	// MigrationTargetReadyTimestamp indicates the time at which the target node
 	// detected that the VMI became active on the target during live migration.

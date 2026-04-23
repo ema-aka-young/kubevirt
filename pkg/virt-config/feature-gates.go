@@ -89,10 +89,6 @@ func (config *ClusterConfig) SnapshotEnabled() bool {
 	return config.isFeatureGateEnabled(featuregate.SnapshotGate)
 }
 
-func (config *ClusterConfig) VMExportEnabled() bool {
-	return config.isFeatureGateEnabled(featuregate.VMExportGate)
-}
-
 func (config *ClusterConfig) HotplugVolumesEnabled() bool {
 	return config.isFeatureGateEnabled(featuregate.HotplugVolumesGate)
 }
@@ -171,10 +167,6 @@ func (config *ClusterConfig) DeclarativeHotplugVolumesEnabled() bool {
 
 func (config *ClusterConfig) SecureExecutionEnabled() bool {
 	return config.isFeatureGateEnabled(featuregate.SecureExecution)
-}
-
-func (config *ClusterConfig) PanicDevicesEnabled() bool {
-	return config.isFeatureGateEnabled(featuregate.PanicDevicesGate)
 }
 
 func (config *ClusterConfig) PasstBindingEnabled() bool {

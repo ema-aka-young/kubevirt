@@ -203,6 +203,15 @@ var _ = Describe("[sig-monitoring]Metrics", decorators.SigMonitoring, func() {
 			Eventually(func() []testing.PromResult {
 				return fetchPrometheusKubevirtMetrics(virtClient).Data.Result
 			}, 3*time.Minute, 10*time.Second).Should(ContainElement(gomegaContainsMetricMatcher(metric, nil)))
+
+			By("Waiting until vmi sync metrics are removed")
+			Eventually(func() error {
+				_, err := libmonitoring.GetMetricValueWithLabels(virtClient, "kubevirt_vmi_sync_total", map[string]string{
+					"namespace": vmiRef.Namespace,
+					"name":      vmiRef.Name,
+				})
+				return err
+			}, 3*time.Minute, 10*time.Second).Should(HaveOccurred())
 		})
 	})
 
@@ -292,9 +301,7 @@ func setupSharedVM(virtClient kubecli.KubevirtClient) *v1.VirtualMachine {
 	vm := createRunningVM(virtClient, vmi, v1.RunStrategyAlways, true)
 
 	By("Waiting for the VM to be reported")
-	libmonitoring.WaitForMetricValueWithLabels(
-		virtClient, "kubevirt_number_of_vms", 1, map[string]string{"namespace": vm.Namespace}, 1,
-	)
+	libmonitoring.WaitForMetricValueWithLabels(virtClient, "namespace:kubevirt_vm:sum", 1, map[string]string{"namespace": vm.Namespace}, 1)
 
 	By("Waiting for the VMI to be reported")
 	labels := map[string]string{

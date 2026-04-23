@@ -34,7 +34,6 @@ const (
 	// Owner: sig-storage
 	// Alpha: v0.55.0
 	// Beta: v1.3.0
-	VMExportGate       = "VMExport"
 	HotplugVolumesGate = "HotplugVolumes"
 	HostDiskGate       = "HostDisk"
 
@@ -142,13 +141,6 @@ const (
 	//
 	VideoConfig = "VideoConfig"
 
-	// Owner: @varunrsekar
-	// Alpha: v1.6.0
-	// Beta: v1.7.0
-	//
-	// PanicDevices allows defining panic devices for signaling crashes in the guest for a VirtualMachineInstance.
-	PanicDevicesGate = "PanicDevices"
-
 	// Beta: v1.8.0
 	//
 	// PasstBinding enables the use of passt core network binding
@@ -247,7 +239,6 @@ func init() {
 	RegisterFeatureGate(FeatureGate{Name: SidecarGate, State: Alpha})
 	RegisterFeatureGate(FeatureGate{Name: HostDevicesGate, State: Alpha})
 	RegisterFeatureGate(FeatureGate{Name: SnapshotGate, State: Beta})
-	RegisterFeatureGate(FeatureGate{Name: VMExportGate, State: Beta})
 	RegisterFeatureGate(FeatureGate{Name: HotplugVolumesGate, State: Alpha})
 	RegisterFeatureGate(FeatureGate{Name: HostDiskGate, State: Alpha})
 	RegisterFeatureGate(FeatureGate{Name: DownwardMetricsFeatureGate, State: Alpha})
@@ -267,7 +258,6 @@ func init() {
 	RegisterFeatureGate(FeatureGate{Name: DeclarativeHotplugVolumesGate, State: Alpha})
 	RegisterFeatureGate(FeatureGate{Name: SecureExecution, State: Beta})
 	RegisterFeatureGate(FeatureGate{Name: VideoConfig, State: Beta})
-	RegisterFeatureGate(FeatureGate{Name: PanicDevicesGate, State: Beta})
 	RegisterFeatureGate(FeatureGate{Name: UtilityVolumesGate, State: Alpha})
 	RegisterFeatureGate(FeatureGate{Name: ConfigurableHypervisor, State: Alpha})
 	RegisterFeatureGate(FeatureGate{Name: PasstBinding, State: Beta})
